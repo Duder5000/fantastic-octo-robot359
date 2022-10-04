@@ -32,6 +32,8 @@ public class ActivityTwo extends Activity implements OnClickListener, RadioGroup
         lastNameEditText = (EditText)findViewById(R.id.lastnameEditText);
         colorButton = (RadioGroup) findViewById(R.id.radioGroupColors);
         colorButton.setOnCheckedChangeListener(this);
+
+        color = "#ff0000"; //fix crash if the color is left as the default read
     }
 
     @Override
