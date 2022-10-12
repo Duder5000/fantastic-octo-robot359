@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ActivityOne extends Activity implements View.OnClickListener{
@@ -19,10 +21,11 @@ public class ActivityOne extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_one);
+
+        Log.e("activityTest","~~~App Start~~~");
+
         buttonEnterInfo = (Button)findViewById(R.id.button);
         buttonEnterInfo.setOnClickListener(this);
-
-        displayInfo = (TextView)findViewById(R.id.textView2);
     }
 
     @Override
@@ -35,18 +38,19 @@ public class ActivityOne extends Activity implements View.OnClickListener{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Log.e("activityTest","Back to ActivityOne, in onActivityResult");
+        Log.e("activityTest", "requestCode=" + requestCode + ", RESULT_OK=" + resultCode);
+
+//        String word_entered = "apple";
+//        Uri webpage = Uri.parse("https://www.merriam-webster.com/" + word_entered);
+//        Intent webIntent = new Intent(Intent.ACTION_VIEW,webpage);
+//        startActivity(webIntent);
+
         if (requestCode==REQUEST_CODE) //check that we're processing the response from WordEntry
         {
             if(resultCode==RESULT_OK) //make sure the request was successful
             {
-//                if ((data.hasExtra("First Name"))&&(data.hasExtra("Last Name"))&&(data.hasExtra("Selected Color")));
-//                {
-//                    String firstname_entered = data.getExtras().getString("First Name");
-//                    String lastname_entered = data.getExtras().getString("Last Name");
-//                    String color_selected = data.getExtras().getString("Selected Color");
-//                    displayInfo.setText("Welcome " + firstname_entered + " " +lastname_entered);
-//                    displayInfo.setBackgroundColor((Color.parseColor(color_selected)));
-//                }
                 if(data.hasExtra("WORD")){
                     String word_entered = data.getExtras().getString("WORD");
                     Uri webpage = Uri.parse("https://www.merriam-webster.com/" + word_entered);
