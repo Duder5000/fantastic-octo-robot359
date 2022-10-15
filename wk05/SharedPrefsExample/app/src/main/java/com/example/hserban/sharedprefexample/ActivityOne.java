@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,13 +19,15 @@ public class ActivityOne extends Activity implements RadioGroup.OnCheckedChangeL
     private Button goButton, saveButton;
     private EditText firstNameEditText;
     private EditText lastNameEditText;
-    private RadioGroup colorButton;
+    private RadioGroup colorButton, radioGroupColorsText, textSize;
     String firstName;
     String lastName;
-    String color;
+    String color, colorText;
+    Float textType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("alex", "~~~Start App~~~");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_one);
 
@@ -33,13 +36,28 @@ public class ActivityOne extends Activity implements RadioGroup.OnCheckedChangeL
 
         firstNameEditText = (EditText)findViewById(R.id.firstnameEditText);
         lastNameEditText = (EditText)findViewById(R.id.lastnameEditText);
+
         colorButton = (RadioGroup) findViewById(R.id.radioGroupColors);
         colorButton.setOnCheckedChangeListener(this);
+
+        radioGroupColorsText = (RadioGroup) findViewById(R.id.radioGroupColorsText);
+        radioGroupColorsText.setOnCheckedChangeListener(this);
+
+        textSize = (RadioGroup) findViewById(R.id.textSize);
+        textSize.setOnCheckedChangeListener(this);
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         //set color according to selected RadioButton
+        Log.d("alex", "group=" + group + ", checkedId=" + checkedId);
+
+//        if(group == "textSize"){
+//            Log.d("alex","worked");
+//        }else{
+//            Log.d("alex","didnt worked");
+//        }
+
         switch (checkedId) {
             case R.id.radioRed:
                 color = "#ff0000";
@@ -56,7 +74,32 @@ public class ActivityOne extends Activity implements RadioGroup.OnCheckedChangeL
             case R.id.radioYellow:
                 color = "#ffff00";
                 break;
+            case R.id.radioRedText: //Text Color Section
+                colorText = "#ff0000";
+                break;
+            case R.id.radioBlueText:
+                colorText = "#0000ff";
+                break;
+            case R.id.radioGreenText:
+                colorText = "#00ff00";
+                break;
+            case R.id.radioBrownText:
+                colorText = "#a52a2a";
+                break;
+            case R.id.radioYellowText:
+                colorText = "#ffff00";
+                break;
+            case R.id.textS: //Text Size Section
+                textType = Float.valueOf(20);
+                break;
+            case R.id.textM:
+                textType = Float.valueOf(30);
+                break;
+            case R.id.textL:
+                textType = Float.valueOf(40);
+                break;
         }
+
     }
 
     public void saveData(View view) {
@@ -72,6 +115,10 @@ public class ActivityOne extends Activity implements RadioGroup.OnCheckedChangeL
         editor.putString("firstName", firstName);
         editor.putString("lastName", lastName);
         editor.putString("selectedColor", color);
+
+        editor.putString("selectedTextColor", colorText);
+        editor.putFloat("selectedTextSize", textType);
+
         Toast.makeText(this, "First, last names and color saved to Preferences", Toast.LENGTH_LONG).show();
         editor.commit();
     }

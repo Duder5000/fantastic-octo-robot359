@@ -36,15 +36,18 @@ public class ActivityTwo extends Activity implements View.OnClickListener{
         String lastName = sharedPrefs.getString("lastName", DEFAULT);
         String colorSelected = sharedPrefs.getString("selectedColor", DEFAULT);
 
-        if ( firstName.equals(DEFAULT) || lastName.equals(DEFAULT) || colorSelected.equals(DEFAULT))
-        {
+        String textColorSelected = sharedPrefs.getString("selectedTextColor", DEFAULT);
+        Float textSizeSelected = sharedPrefs.getFloat("selectedTextSize", 1);
+
+        if ( firstName.equals(DEFAULT) || lastName.equals(DEFAULT) || colorSelected.equals(DEFAULT)){
             Toast.makeText(this, "No data found. Please enter names and select color.", Toast.LENGTH_LONG).show();
         }
-        else
-        {
+        else{
             Toast.makeText(this, "Data retrieve success", Toast.LENGTH_LONG).show();
             displayInfo.setText("Welcome " + firstName + " " + lastName);
             displayInfo.setBackgroundColor((Color.parseColor(colorSelected)));
+            displayInfo.setTextColor((Color.parseColor(textColorSelected)));
+            displayInfo.setTextSize(textSizeSelected);
         }
     }
 }

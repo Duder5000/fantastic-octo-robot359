@@ -117,6 +117,86 @@
                 android:textColor="#ffff00"
                 android:textSize="20sp" />
         </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radioGroupColorsText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3">
+
+            <RadioButton
+                android:id="@+id/radioRedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Red"
+                android:textColor="#ff0000"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radioBlueText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blue"
+                android:textColor="#0000ff"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radioGreenText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Green"
+                android:textColor="#00ff00"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radioBrownText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brown"
+                android:textColor="#a52a2a"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radioYellowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yellow"
+                android:textColor="#ffff00"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/textSize"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3">
+
+            <RadioButton
+                android:id="@+id/textS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Small"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/textM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Med"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/textL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Large"
+                android:textSize="20sp" />
+        </RadioGroup>
+
     </LinearLayout>
 
     <LinearLayout
