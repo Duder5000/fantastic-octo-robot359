@@ -8,7 +8,7 @@ public class ListItem {
     public ListItem(String name, int imageID, String additionalData){
         this.name = name;
         this.imageID = imageID;
-        this. additionalData = additionalData;
+        this.additionalData = additionalData;
     }
 
 }
