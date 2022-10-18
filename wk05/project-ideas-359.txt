@@ -1,5 +1,0 @@
-camera to get image + edits
-maps to safe fav places
-game (proably not)
-figit app (sensor games)
-D&D story app, store progess, sensor roll dice, dont do networking
