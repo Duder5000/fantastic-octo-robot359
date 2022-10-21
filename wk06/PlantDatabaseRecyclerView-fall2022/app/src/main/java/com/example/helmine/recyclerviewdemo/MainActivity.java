@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    EditText plantName, plantType, selectType;
+    EditText plantName, plantType, selectType, plantLatin, plantLoc;
     MyDatabase db;
 
     @Override
@@ -21,6 +21,8 @@ public class MainActivity extends Activity {
         plantName = (EditText)findViewById(R.id.plantNameEditText);
         plantType = (EditText)findViewById(R.id.plantTypeEditText);
         selectType = (EditText)findViewById(R.id.selectTypeEditText);
+        plantLatin = (EditText)findViewById(R.id.latinEditText);
+        plantLoc = (EditText)findViewById(R.id.locEditText);
 
         db = new MyDatabase(this);
     }

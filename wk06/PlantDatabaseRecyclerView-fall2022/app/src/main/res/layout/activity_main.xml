@@ -56,6 +56,28 @@
         android:layout_alignRight="@+id/plantNameEditText"
         android:layout_alignEnd="@+id/plantNameEditText" />
 
+<!--    New Stuff-->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/latinEditText"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/plantNameEditText"
+        android:layout_alignStart="@+id/plantNameEditText"
+        android:layout_alignRight="@+id/plantNameEditText"
+        android:layout_alignEnd="@+id/plantNameEditText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locEditText"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/plantNameEditText"
+        android:layout_alignStart="@+id/plantNameEditText"
+        android:layout_alignRight="@+id/plantNameEditText"
+        android:layout_alignEnd="@+id/plantNameEditText" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
