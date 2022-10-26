@@ -17,11 +17,11 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    public ArrayList<String> sensorList;
+    public ArrayList<Sensor> sensorList;
     Context context;
     List<Sensor> deviceSensorsAdp;
 
-    public MyAdapter(ArrayList<String> list, Context context, List<Sensor> deviceSensorsAdp) {
+    public MyAdapter(ArrayList<Sensor> list, Context context, List<Sensor> deviceSensorsAdp) {
         sensorList = list;
         this.context = context;
         this.deviceSensorsAdp = deviceSensorsAdp;
@@ -37,8 +37,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyAdapter.MyViewHolder holder, int position) {
         TextView tv = holder.myTextView;
-        holder.myData = sensorList.get(position);
-        tv.setText(sensorList.get(position));
+        holder.myData = sensorList.get(position).getType();
+        tv.setText(sensorList.get(position).getName());
     }
 
 
@@ -50,7 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView myTextView;
-        public String myData;
+        public int myData;
         Context context;
 
         Sensor clickedSensor;
