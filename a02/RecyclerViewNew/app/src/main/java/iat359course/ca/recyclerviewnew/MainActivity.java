@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,4 +47,25 @@ public class MainActivity extends Activity {
         adapter = new MyAdapter(sensorStrings, getApplicationContext(), deviceSensor);
         myRecycler.setAdapter(adapter);
     }
+
+//    @Override
+    public void onSensorChanged(SensorEvent event){
+        StringBuilder sensorMesage = new StringBuilder(event.sensor.getName()).append(" new values: ");
+
+        for(float value : event.values){
+            sensorMesage.append("[").append(value).append("]");
+        }
+
+        sensorMesage.append(" with accuracy ").append(event.accuracy);
+        sensorMesage.append(" at timestamp ").append(event.timestamp);
+
+        sensorMesage.append(".");
+
+        Log.i("testS", String.valueOf(sensorMesage));
+    }
+
+
+
+
+
 }
