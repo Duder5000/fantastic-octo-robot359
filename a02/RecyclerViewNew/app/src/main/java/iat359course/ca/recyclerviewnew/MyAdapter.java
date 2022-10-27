@@ -53,8 +53,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public int myData;
         Context context;
 
-        Sensor clickedSensor;
-
         public MyViewHolder(View itemView) {
             super(itemView);
             myTextView = (TextView) itemView.findViewById(R.id.textViewList);
@@ -66,7 +64,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public void onClick(View view) {
             Intent i = new Intent(context, ShowingActivity.class);
             i.putExtra("dataToShow", myData);
-//            i.putExtra("sensorData", clickedSensor);
             context.startActivity(i);
         }
     }

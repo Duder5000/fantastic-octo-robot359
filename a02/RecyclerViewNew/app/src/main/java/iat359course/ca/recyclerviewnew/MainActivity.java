@@ -9,11 +9,17 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends Activity implements SensorEventListener {
@@ -21,36 +27,36 @@ public class MainActivity extends Activity implements SensorEventListener {
     RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-//    ArrayList<String> sensorStrings;
-//    ArrayList<Integer> sensorInt;
     ArrayList<Sensor> sensorArr;
 
     SensorManager mySensorManager;
     List<Sensor> deviceSensor;
 
-
-    Sensor gyro;
+    Sensor gyro, light, acc;
+    ToneGenerator toneG;
+    Date flatCounterStart;
+    boolean flatFirst = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 75);
+        flatCounterStart = Calendar.getInstance().getTime(); //remove later
+
         mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         deviceSensor = mySensorManager.getSensorList(Sensor.TYPE_ALL);
 
-//        sensorStrings = new ArrayList<String>();
-//        sensorInt = new ArrayList<Integer>();
         sensorArr = new ArrayList<Sensor>();
 
         for (Sensor j: deviceSensor){
-//            Log.d("test", "Sensor: " + j.getName());
-//            sensorStrings.add(j.getName());
-//            sensorInt.add(j.getType());
             sensorArr.add(j);
         }
 
         gyro = mySensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        light = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        acc = mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         myRecycler = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -65,6 +71,8 @@ public class MainActivity extends Activity implements SensorEventListener {
     protected void onResume() {
         super.onResume();
         mySensorManager.registerListener(this, gyro, SensorManager.SENSOR_DELAY_NORMAL);
+        mySensorManager.registerListener(this, light, SensorManager.SENSOR_DELAY_NORMAL);
+        mySensorManager.registerListener(this, acc, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -75,18 +83,28 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event){
-        StringBuilder sensorMesage = new StringBuilder(event.sensor.getName()).append(" new values: ");
 
-        for(float value : event.values){
-            sensorMesage.append("[").append(value).append("]");
+        //Part d)
+        if(event.sensor.getType() == Sensor.TYPE_GYROSCOPE){
+            if(flatFirst) {
+                boolean alarm = checkTime(Calendar.getInstance().getTime());
+            }else{
+                //check if phone is flat
+            }
         }
 
-        sensorMesage.append(" with accuracy ").append(event.accuracy);
-        sensorMesage.append(" at timestamp ").append(event.timestamp);
+        //Part c)
+        if(event.sensor.getType() == Sensor.TYPE_LIGHT){
+            if(event.values[0] == 0){
+                Log.d("SensorTest", "Light Sensor = " + event.values[0]);
+                toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+            }
+        }
 
-        sensorMesage.append(".");
+        //Part e)
+        if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
 
-        Log.d("test", String.valueOf(sensorMesage));
+        }
     }
 
     @Override
@@ -94,5 +112,12 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     }
 
+    public boolean checkTime(Date d){
+//        if(d = flatCounterStart.add()){
+//
+//        }
+
+        return true;
+    }
 
 }
