@@ -12,12 +12,11 @@ import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,12 +34,28 @@ public class MainActivity extends Activity implements SensorEventListener {
     Sensor gyro, light, acc;
     ToneGenerator toneG;
     Date flatCounterStart;
-    boolean flatFirst = false;
+    boolean isFlat = false;
+    boolean timerRunning = false;
+
+    float gyroVal0;
+    float gyroVal1;
+    float gyroVal2;
+    boolean checkFlatVal = false;
+    boolean doChecks = false;
+
+    private final int interval = 5000; // 5 Second
+    private Handler handler = new Handler();
+
+    boolean stationaryButtonPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("SensorTest", "***Start***");
+        doChecks = true;
+//        stationaryButtonPressed = true;
 
         toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 75);
         flatCounterStart = Calendar.getInstance().getTime(); //remove later
@@ -86,11 +101,37 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         //Part d)
         if(event.sensor.getType() == Sensor.TYPE_GYROSCOPE){
-            if(flatFirst) {
-                boolean alarm = checkTime(Calendar.getInstance().getTime());
-            }else{
-                //check if phone is flat
+//            Log.d("SensorTest", "Gyro Sensor 0 = " + event.values[0]);
+//            Log.d("SensorTest", "Gyro Sensor 1 = " + event.values[1]);
+//            Log.d("SensorTest", "Gyro Sensor 2 = " + event.values[2]);
+            if(doChecks){
+                gyroVal0 = event.values[0];
+                gyroVal1 = event.values[1];
+                gyroVal2 = event.values[2];
+
+                if (gyroVal0 == 0 && gyroVal1 == 0 && gyroVal2 == 0) {
+                    isFlat = true;
+                } else {
+                    isFlat = false;
+                }
+
+                if (isFlat && timerRunning) {
+                    //check if timer is at 5 seconds
+                    if (checkFlatVal) {
+                        Log.d("SensorTest", "Phone flat for 5 seconds");
+                    }
+                } else if (isFlat && !timerRunning) {
+                    timerRunning = true;
+                    //start timer
+                    Log.d("SensorTest", "Timer start");
+                    handler.postAtTime(runnable, System.currentTimeMillis() + interval);
+                    handler.postDelayed(runnable, interval);
+                } else if (!isFlat && timerRunning) {
+                    timerRunning = false;
+                    //clear timer
+                }
             }
+
         }
 
         //Part c)
@@ -103,8 +144,22 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         //Part e)
         if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+//            Log.d("SensorTest", "Acc Sensor 0 = " + event.values[0]);
+//            Log.d("SensorTest", "Acc Sensor 1 = " + event.values[1]);
+//            Log.d("SensorTest", "Acc Sensor 2 = " + event.values[2]);
 
+            float accVal0 = event.values[0];
+            float accVal1 = event.values[1];
+            float accVal2 = event.values[2];
+            if(stationaryButtonPressed) {
+                if (accVal0 == 0 && accVal2 == 0) {
+                    Log.d("SensorTest", "Is stationary");
+                    stationaryButtonPressed = false;
+                }
+            }
         }
+
+
     }
 
     @Override
@@ -112,12 +167,23 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     }
 
-    public boolean checkTime(Date d){
-//        if(d = flatCounterStart.add()){
-//
-//        }
 
-        return true;
+//    https://stackoverflow.com/questions/1877417/how-to-set-a-timer-in-android
+    private Runnable runnable = new Runnable(){
+        public void run() {
+            Log.d("SensorTest", "Timer end");
+            checkFlatVal = checkFlat();
+            timerRunning = false;
+            doChecks = false;
+        }
+    };
+
+    boolean checkFlat(){
+        if(gyroVal0 == 0 && gyroVal1 == 0 && gyroVal2 == 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
