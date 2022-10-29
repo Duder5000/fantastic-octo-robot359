@@ -159,7 +159,8 @@ public class MainActivity extends Activity implements SensorEventListener, View.
             float accVal1 = event.values[1];
             float accVal2 = event.values[2];
             if (accVal0 == 0 && accVal2 == 0 && buttonClicked) {
-                Log.d("SensorTest", "Is stationary");
+                Toast toast = Toast.makeText(this, "Phone is stationary", Toast.LENGTH_SHORT);
+                toast.show();
                 //Do some stuff
             }
             buttonClicked = false;
