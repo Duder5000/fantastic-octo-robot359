@@ -1,10 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <!-- A RecyclerView with some commonly used attributes -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:scrollbars="vertical"
@@ -17,4 +16,5 @@
         android:layout_height="wrap_content"
         android:text="Check stationary" />
 
-</RelativeLayout>
+
+</LinearLayout>

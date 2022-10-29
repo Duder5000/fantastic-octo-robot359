@@ -14,6 +14,8 @@ import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends Activity implements SensorEventListener {
+public class MainActivity extends Activity implements SensorEventListener, View.OnClickListener{
     RecyclerView myRecycler;
     RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -48,12 +50,14 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     boolean stationaryButtonPressed = false;
 
+    private Button buttonStationary;
+    boolean buttonClicked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("SensorTest", "***Start***");
         doChecks = true;
 //        stationaryButtonPressed = true;
 
@@ -80,6 +84,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         adapter = new MyAdapter(sensorArr, getApplicationContext(), deviceSensor);
         myRecycler.setAdapter(adapter);
+
+        buttonStationary = (Button)findViewById(R.id.buttonStationary);
+        buttonStationary.setOnClickListener(this);
     }
 
     @Override
@@ -151,12 +158,11 @@ public class MainActivity extends Activity implements SensorEventListener {
             float accVal0 = event.values[0];
             float accVal1 = event.values[1];
             float accVal2 = event.values[2];
-            if(stationaryButtonPressed) {
-                if (accVal0 == 0 && accVal2 == 0) {
-                    Log.d("SensorTest", "Is stationary");
-                    stationaryButtonPressed = false;
-                }
+            if (accVal0 == 0 && accVal2 == 0 && buttonClicked) {
+                Log.d("SensorTest", "Is stationary");
+                //Do some stuff
             }
+            buttonClicked = false;
         }
 
 
@@ -184,6 +190,12 @@ public class MainActivity extends Activity implements SensorEventListener {
         }else{
             return false;
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.d("SensorTest", "Button Clicked");
+        buttonClicked = true;
     }
 
 }
