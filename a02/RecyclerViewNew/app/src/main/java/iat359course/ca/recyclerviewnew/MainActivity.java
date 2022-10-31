@@ -48,8 +48,6 @@ public class MainActivity extends Activity implements SensorEventListener, View.
     private final int interval = 5000; // 5 Second
     private Handler handler = new Handler();
 
-    boolean stationaryButtonPressed = false;
-
     private Button buttonStationary;
     boolean buttonClicked = false;
 
@@ -108,14 +106,16 @@ public class MainActivity extends Activity implements SensorEventListener, View.
 
         //Part d)
         if(event.sensor.getType() == Sensor.TYPE_GYROSCOPE){
-//            Log.d("SensorTest", "Gyro Sensor 0 = " + event.values[0]);
-//            Log.d("SensorTest", "Gyro Sensor 1 = " + event.values[1]);
-//            Log.d("SensorTest", "Gyro Sensor 2 = " + event.values[2]);
+            Log.d("SensorTest", "Gyro Sensor 0 = " + event.values[0]);
+            Log.d("SensorTest", "Gyro Sensor 1 = " + event.values[1]);
+            Log.d("SensorTest", "Gyro Sensor 2 = " + event.values[2]);
             if(doChecks){
                 gyroVal0 = event.values[0];
                 gyroVal1 = event.values[1];
                 gyroVal2 = event.values[2];
 
+
+                //Should use threasholds
                 if (gyroVal0 == 0 && gyroVal1 == 0 && gyroVal2 == 0) {
                     isFlat = true;
                 } else {
@@ -159,9 +159,8 @@ public class MainActivity extends Activity implements SensorEventListener, View.
             float accVal1 = event.values[1];
             float accVal2 = event.values[2];
             if (accVal0 == 0 && accVal2 == 0 && buttonClicked) {
-                Toast toast = Toast.makeText(this, "Phone is stationary", Toast.LENGTH_SHORT);
-                toast.show();
-                //Do some stuff
+                Toast toastStationary = Toast.makeText(this, "Phone is stationary", Toast.LENGTH_SHORT);
+                toastStationary.show();
             }
             buttonClicked = false;
         }
