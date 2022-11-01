@@ -1,0 +1,131 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hserban.explicitintentdemonew.ActivityTwo">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Info"
+        android:id="@+id/textView3"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="42dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/firstnameEditText"
+        android:paddingTop="20dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/textView3"
+        android:layout_toEndOf="@+id/radioGroupColors"
+        android:layout_marginStart="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name: "
+        android:id="@+id/textView5"
+        android:paddingTop="30dp"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/lastnameEditText"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/lastnameEditText"
+        android:paddingTop="30dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/firstnameEditText"
+        android:layout_alignStart="@+id/firstnameEditText" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupColors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonOK"
+        android:layout_alignParentStart="true">
+        <RadioButton
+            android:id="@+id/radioRed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Red"
+            android:textColor="#ff0000"
+            android:textSize="20sp" />
+        <RadioButton
+            android:id="@+id/radioBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blue"
+            android:textColor="#0000ff"
+            android:textSize="20sp" />
+        <RadioButton
+            android:id="@+id/radioGreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green"
+            android:textColor="#00ff00"
+            android:textSize="20sp" />
+        <RadioButton
+            android:id="@+id/radioBrown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brown"
+            android:textColor="#a52a2a"
+            android:textSize="20sp" />
+        <RadioButton
+            android:id="@+id/radioYellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yellow"
+            android:textColor="#ffff00"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/buttonOK"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ActivityTwo"
+        android:id="@+id/textView7"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name:"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/lastnameEditText"
+        android:textSize="20sp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a Color: "
+        android:id="@+id/textView6"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>
