@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GradeCalcApp.iml" filepath="$PROJECT_DIR$/.idea/modules/GradeCalcApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GradeCalcApp.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>
